@@ -2,11 +2,13 @@ import java.text.DateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 public class Main {
     public static void main(String[] args) {
 
+        /*
         // Data Local sem horas
         LocalDate d1 = LocalDate.now();
         System.out.println(d1); // 2024-02-29
@@ -50,5 +52,17 @@ public class Main {
         // LocalDate inserindo um dado por vez
         LocalDate d10 = LocalDate.of(2021, 12, 04);
         System.out.println(d10); // 2021-12-04
+        */
+        // --------------------------------
+
+        Instant instant1 = Instant.now(); // 2024-02-29T16:03:57.115325300Z
+
+        // converter Instant para um LocalDate considerando o sistema
+        LocalDateTime date1 = LocalDateTime.ofInstant(instant1, ZoneId.systemDefault());
+        System.out.println(date1); // 2024-02-29T13:03:57.115325300
+
+        // converter Instant para um LocalDate específico
+        LocalDateTime date2 = LocalDateTime.ofInstant(instant1, ZoneId.of("Portugal"));
+        System.out.println(date2); // 2024-02-29T16:03:57.115325300
     }
 }
