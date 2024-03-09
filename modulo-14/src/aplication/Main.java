@@ -4,6 +4,8 @@ import entities.Account;
 import entities.BusinessAccount;
 import entities.SavingsAccount;
 
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
         /*
@@ -40,6 +42,8 @@ public class Main {
         }
 
          */
+
+        /*
         Account acc = new Account(1000, "arthur", 1000.0);
         acc.withdraw(250);
         System.out.println(acc.getBalance());
@@ -51,5 +55,23 @@ public class Main {
         Account acc3 = new BusinessAccount(1003, "eduardo", 1000.0, 300.0);
         acc3.withdraw(250);
         System.out.println(acc3.getBalance());
+
+         */
+
+        ArrayList<Account> accounts = new ArrayList<>();
+
+
+        accounts.add(new SavingsAccount(1002, "joao", 1500.0, 0.01));
+        accounts.add(new BusinessAccount(1003, "eduardo", 1500.0, 300.0));
+
+        double totalBalance = 0;
+
+        for (Account account : accounts) {
+            totalBalance += account.getBalance();
+
+        }
+
+        System.out.println(totalBalance);
+
     }
 }
