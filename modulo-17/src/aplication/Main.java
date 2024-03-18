@@ -29,22 +29,10 @@ public class Main {
         // com FileWriter e BufferedWriter
         // method4();
 
-        File file = new File("C:\\Users\\Arthur\\Documents\\filmes.txt");
+        // Manipulando pastas
+        // com File
+        // method5();
 
-        MovieManager movieManager = new MovieManager();
-
-        try (BufferedWriter br = new BufferedWriter(new FileWriter(file, true))) {
-            for (Movie movie : movieManager.getMovies()) {
-                br.write(movie.getTitle());
-                br.newLine();
-            }
-        }
-        catch (IOException e) {
-            System.out.println("Error " + e.getMessage());
-        }
-        catch (RuntimeException e) {
-            System.out.println("Unexpected Error");
-        }
     }
 
     public static void method1() {
@@ -117,5 +105,31 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Error " + e.getMessage());
         }
+    }
+
+    public static void method5() {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter a folder path: ");
+        String stringPath = scan.next();
+        File path = new File(stringPath);
+
+        File[] folders = path.listFiles(File::isDirectory);
+        System.out.println("Folders: ");
+        for (File folder : folders) {
+            System.out.println(folder);
+        }
+
+        System.out.println();
+
+        File[] files = path.listFiles(File::isFile);
+        System.out.println("Files: ");
+        for (File file : files) {
+            System.out.println(file);
+        }
+
+        boolean success = new File(stringPath + "\\subDirectory").mkdir();
+        System.out.println("Directory created successfuly: " + success);
+
+        scan.close();
     }
 }
