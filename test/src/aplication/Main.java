@@ -1,17 +1,30 @@
 package aplication;
 
-import Entities.Car;
-
-import java.util.ArrayList;
+import model.exception.BookException;
+import model.entities.Book;
+import model.entities.Library;
+import model.enums.Status;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Car> cars = new ArrayList<>();
+        Library library = new Library();
 
-        cars.add(new Car("Ford", "Azul", 2022));
-        cars.add(new Car("Ferrari", "Vermelha", 2019));
+        try{
+            library.addBook(new Book("Senhor dos Anéis", "J.R.R. Tolkien", Status.AVAILABLE));
+            library.addBook(new Book("Dom Casmurro", "Machado de Assis", Status.LENT));
+            library.addBook(new Book("1984", "George Orwell", Status.LOST));
 
-        System.out.println("Carro da Ford é seminovo? " + cars.get(0).preOwned()); // true
-        System.out.println("Carro da Ferrari é seminovo? " + cars.get(1).preOwned()); // false
+            library.rentBook("A Arte da Guerra");
+            // output - Erro ao alugar livro: livro "A Arte da Guerra" não encontrado
+
+            library.rentBook("1984"); 
+            // output - Erro ao alugar livro: "Dom Casmurro" se encontra indisponível
+        }
+        catch (BookException e) {
+            System.out.println("Erro ao alugar livro: " + e.getMessage());
+        }
+        catch (RuntimeException e) {
+            System.out.println("Erro Inesperado: " + e.getMessage());
+        }
     }
 }

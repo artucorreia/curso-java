@@ -30,4 +30,15 @@ public class Invoice {
     public Double getTotalPayment() {
         return getBasicPayment() + getTax();
     }
+
+    public String toString() {
+        return "Pagamento basico: " +
+                String.format("%.2f", getBasicPayment()) +
+                "\n" +
+                "Imposto: " +
+                String.format("%.2f", getTax()) +
+                "\n" +
+                "Pagamento total: " +
+                String.format("%.2f", getTotalPayment());
+    }
 }

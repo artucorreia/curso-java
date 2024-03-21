@@ -32,14 +32,21 @@ public class Main {
                 finish
         );
 
+        System.out.print("Entre com o preço por hora: ");
+        double pricePerHour = scan.nextDouble();
+        System.out.print("Entre com o preço por hora: ");
+        double pricePerDay = scan.nextDouble();
 
         RentalService rentalService = new RentalService(
-                10.0,
-                130.0,
+                pricePerHour,
+                pricePerDay,
                 new BrazilTaxService()
         );
 
-        System.out.println(rentalService.processInvoice(carRental));
+        rentalService.processInvoice(carRental);
+        System.out.println();
+        System.out.println("FATURA:\n" + carRental);
+
         scan.close();
     }
 }

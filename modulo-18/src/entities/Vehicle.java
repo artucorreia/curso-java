@@ -7,4 +7,12 @@ public class Vehicle {
     public Vehicle(String model) {
         this.model = model;
     }
+
+    public String getModel() {
+        return model;
+    }
+    @Override
+    public String toString() {
+        return getModel();
+    }
 }

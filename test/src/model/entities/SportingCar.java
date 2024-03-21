@@ -1,4 +1,4 @@
-package Entities;
+package model.entities;
 
 public class SportingCar extends Car{
     private Boolean sportMode = false;

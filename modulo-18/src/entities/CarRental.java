@@ -51,4 +51,9 @@ public class CarRental {
     public void setInvoice(Invoice invoice) {
         this.invoice = invoice;
     }
+
+    @Override
+    public String toString() {
+        return getInvoice().toString();
+    }
 }
