@@ -1,7 +1,7 @@
 package services;
 
 public class BrazilInterestService implements InterestService{
-    private static final Double INTEREST_RATE = 1.0;
+    private static final Double INTEREST_RATE = 2.0;
 
     public BrazilInterestService() { }
     @Override
