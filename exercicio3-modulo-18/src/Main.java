@@ -11,20 +11,17 @@ public class Main {
         String path = "C:\\Users\\Arthur\\Documents\\data.txt";
 
         try (
-            BufferedReader br =
-                new BufferedReader(new FileReader(path))
+            BufferedReader br = new BufferedReader(new FileReader(path))
         ) {
             String line = br.readLine();
             while (line != null) {
                 String[] data = line.split(",");
-
                 employees.add(
                     new Employee(
                             data[0],
                             Double.parseDouble(data[1])
                     )
                 );
-
                 line = br.readLine();
             }
 
@@ -39,8 +36,5 @@ public class Main {
         catch (RuntimeException e) {
             System.out.println("Unexpected error " + e.getMessage());
         }
-
-
-
     }
 }
