@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        /*
         Locale.setDefault(Locale.US);
         Scanner scan = new Scanner(System.in);
         PrintService<String> ps = new PrintService<>();
@@ -18,5 +19,8 @@ public class Main {
         System.out.println("First: " + ps.first());
 
         scan.close();
+        */
+
+        
     }
 }
