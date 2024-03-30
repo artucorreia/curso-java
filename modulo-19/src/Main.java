@@ -1,4 +1,5 @@
 import entities.Circle;
+import entities.Client;
 import entities.Rectangle;
 import entities.Shape;
 
@@ -11,7 +12,7 @@ public class Main {
         /*
         Locale.setDefault(Locale.US);
         Scanner scan = new Scanner(System.in);
-        PrintService<String> ps = new PrintService<>();
+        services.PrintService<String> ps = new services.PrintService<>();
 
         System.out.print("How much values? ");
         int n = scan.nextInt();
@@ -75,8 +76,17 @@ public class Main {
         printList(objects); // output: ["Flávio", 13.2]
 
          */
+        Client a = new Client("Arthur", "arthur@gmail.com");
+        Client b = new Client("Arthur", "lais@gmail.com");
+        System.out.println(a.hashCode());
+        System.out.println(b.hashCode());
+        System.out.println(a.equals(b));
+        System.out.println(a == b);
+
+
     }
 
+    /*
     public static double sumAreas(List<? extends Shape> list) {
         double sumAreas = 0;
         for (Shape shape : list) {
@@ -96,4 +106,6 @@ public class Main {
             System.out.println(item);
         }
     }
+
+     */
 }
