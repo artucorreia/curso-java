@@ -1,11 +1,6 @@
-import entities.Circle;
-import entities.Client;
-import entities.Rectangle;
-import entities.Shape;
+import entities.Product;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -76,13 +71,34 @@ public class Main {
         printList(objects); // output: ["Flávio", 13.2]
 
          */
+
+        // metodos de comparação
+        /*
         Client a = new Client("Arthur", "arthur@gmail.com");
         Client b = new Client("Arthur", "lais@gmail.com");
         System.out.println(a.hashCode());
         System.out.println(b.hashCode());
         System.out.println(a.equals(b));
         System.out.println(a == b);
+         */
 
+        Set<Integer> a = new TreeSet<>(List.of(0, 2, 4, 5, 6, 8, 10));
+        Set<Integer> b = new TreeSet<>(List.of(5, 6, 7, 8, 9, 10));
+
+        // union
+        Set<Integer> union = new TreeSet<>(a);
+        union.addAll(b);
+        System.out.println(union);
+
+        // intersection
+        Set<Integer> intersection = new TreeSet<>(a);
+        intersection.retainAll(b);
+        System.out.println(intersection);
+
+        // difference
+        Set<Integer> difference = new TreeSet<>(a);
+        difference.removeAll(b);
+        System.out.println(difference);
 
     }
 
