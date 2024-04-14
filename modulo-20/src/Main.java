@@ -1,32 +1,23 @@
 import entities.Product;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
-        List<Product> products = new ArrayList<>();
-        products.add(new Product("TV", new BigDecimal(900)));
-        products.add(new Product("Mouse", new BigDecimal(50)));
-        products.add(new Product("Tablet", new BigDecimal(350.50)));
-        products.add(new Product("HD Case", new BigDecimal(80.90)));
-        products.add(new Product("Monitor", new BigDecimal(300)));
-        System.out.println("Todos os produtos:");
-        System.out.println(products);
+        List<Product> products = new ArrayList<>() {
+            {
+                add(new Product("TV", 900d));
+                add(new Product("Mouse", 50d));
+                add(new Product("Tablet", 350d));
+                add(new Product("HD Case", 81d));
+                add(new Product("Monitor", 300d));
+            }
+        };
 
-        products.forEach(
-            p -> p.setPrice(
-                p.getPrice().multiply(
-                    new BigDecimal(1.1)
-                )
-            )
-        );
-        System.out
+        // Lista com os nomes do produtos
+        List<String> productsNames = products.stream().map(p -> p.getName().toUpperCase()).toList();
         System.out.println(products);
+        System.out.println(productsNames);
     }
 }

@@ -1,13 +1,10 @@
 package entities;
 
-import java.math.BigDecimal;
-import java.util.Comparator;
-
 public class Product {
     private String name;
-    private BigDecimal price;
+    private Double price;
 
-    public Product(String name, BigDecimal price) {
+    public Product(String name, Double price) {
         this.name = name;
         this.price = price;
     }
@@ -20,11 +17,11 @@ public class Product {
         this.name = name;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -32,7 +29,7 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "name='" + name + '\'' +
-                ", price=" + price +
+                ", price=" + String.format("%.2f", price) +
                 '}';
     }
 }
