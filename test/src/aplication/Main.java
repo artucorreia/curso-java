@@ -1,30 +1,61 @@
 package aplication;
 
-import model.exception.BookException;
-import model.entities.Book;
-import model.entities.Library;
-import model.enums.Status;
+import model.entities.Cart;
+import model.entities.NonPerishableProduct;
+import model.entities.PerishableProduct;
+import model.entities.Product;
+import model.exceptions.CartException;
+import model.exceptions.ProductException;
+
+import java.time.LocalDate;
+import java.util.Locale;
 
 public class Main {
     public static void main(String[] args) {
-        Library library = new Library();
+        Locale.setDefault(Locale.US);
 
-        try{
-            library.addBook(new Book("Senhor dos Anéis", "J.R.R. Tolkien", Status.AVAILABLE));
-            library.addBook(new Book("Dom Casmurro", "Machado de Assis", Status.LENT));
-            library.addBook(new Book("1984", "George Orwell", Status.LOST));
+        try {
+            Cart cart = new Cart();
+            cart.insertItem(
+                new PerishableProduct(
+                    "Milk",
+                    5.99,
+                    1.0,
+                    "Cow milk",
+                    LocalDate.of(2024, 6, 30)
+                )
+            );
+            cart.insertItem(
+                new PerishableProduct(
+                    "Yogurt",
+                    3.49,
+                    0.5,
+                    "Natural yogurt",
+                    LocalDate.of(2024, 5, 15)
+                )
+            );
+            cart.insertItem(
+                new NonPerishableProduct(
+                    "Panela",
+                    79.99,
+                    1.5,
+                    "Aço inoxidável",
+                    "Panela antiaderente"
+                )
+            );
 
-            library.rentBook("A Arte da Guerra");
-            // output - Erro ao alugar livro: livro "A Arte da Guerra" não encontrado
 
-            library.rentBook("1984"); 
-            // output - Erro ao alugar livro: "Dom Casmurro" se encontra indisponível
+            System.out.printf("R$%.2f", cart.totalCart()); // output: R$89.47
+
         }
-        catch (BookException e) {
-            System.out.println("Erro ao alugar livro: " + e.getMessage());
+        catch (ProductException e) {
+            System.out.println("Product error: " + e.getMessage());
+        }
+        catch (CartException e) {
+            System.out.println("Cart error: " + e.getMessage());
         }
         catch (RuntimeException e) {
-            System.out.println("Erro Inesperado: " + e.getMessage());
+            System.out.println("Unexpected error " + e.getMessage());
         }
     }
 }
