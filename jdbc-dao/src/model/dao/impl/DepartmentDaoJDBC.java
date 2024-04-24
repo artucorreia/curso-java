@@ -22,17 +22,70 @@ public class DepartmentDaoJDBC implements Dao<Department> {
 
     @Override
     public void insert(Department department) {
+        PreparedStatement preparedStatement = null;
 
+        try {
+            preparedStatement = connection.prepareStatement(
+            "INSERT INTO DEPARTMENT " +
+                "(NAME) VALUES (?)"
+            );
+
+            preparedStatement.setString(1, department.getName());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new DbException("Unexpected error, no rows affected");
+            }
+
+        }
+        catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(preparedStatement);
+        }
     }
 
     @Override
     public void update(Department department) {
+        PreparedStatement preparedStatement = null;
 
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE DEPARTMENT SET NAME = ? WHERE ID = ?");
+            preparedStatement.setString(1, department.getName());
+            preparedStatement.setInt(2, department.getId());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new DbException("Unexpected error, no rows affected");
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(preparedStatement);
+        }
     }
 
     @Override
     public void delete(int id) {
+        PreparedStatement preparedStatement = null;
 
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM DEPARTMENT WHERE id = ?");
+            preparedStatement.setInt(1, id);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new DbException("Unexpected error, no rows affected");
+            }
+        }
+        catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(preparedStatement);
+        }
     }
 
     @Override
@@ -58,7 +111,10 @@ public class DepartmentDaoJDBC implements Dao<Department> {
         catch (SQLException e) {
             throw new DbException(e.getMessage());
         }
-
+        finally {
+            DB.closeResultSet(resultSet);
+            DB.closeStatement(preparedStatement);
+        }
         return null;
     }
 

@@ -11,16 +11,19 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         Dao<Seller> sellerDao = DaoFactory.createSellerDao();
-//        Seller seller = sellerDao.findById(11);
-//        System.out.println(seller);
+        sellerDao.findAll().forEach(System.out::println);
+        //        Seller seller = sellerDao.findById(11);
 //        seller.setName("test");
 //        sellerDao.update(seller);
 
 //        List<Seller> sellerList = sellerDao.findAll();
 //        sellerList.forEach(System.out::println);
         Dao<Department> departmentDao = DaoFactory.createDepartmentDao();
-        Department department = departmentDao.findById(1);
-        System.out.println(department);
+        Department department = departmentDao.findById(10);
+//        System.out.println(department);
+//        departmentDao.insert(new Department(null, "test"));
+        department.setName("hugo");
+        departmentDao.update(department);
         System.out.println(departmentDao.findAll());
     }
 }

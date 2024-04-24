@@ -8,7 +8,6 @@ import java.util.Objects;
 public class Department implements Serializable {
     private Integer id;
     private String name;
-    private List<Seller> sellerList = new ArrayList<>();
 
     public Department() { }
 
@@ -17,21 +16,18 @@ public class Department implements Serializable {
         this.name = name;
     }
 
-    public void addSeller(Seller seller) {
-        sellerList.add(seller);
-    }
-
-    public void removeSellerById(int id) {
-        sellerList.remove(id);
-    }
-
     public Integer getId() {
         return id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getName() {
         return name;
     }
+
 
     @Override
     public boolean equals(Object o) {
